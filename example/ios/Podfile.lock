@@ -18,14 +18,16 @@ PODS:
   - image_pickers (0.0.1):
     - AFNetworking
     - Flutter
+    - Masonry
     - SDWebImage
-    - ZLPhotoBrowser (~> 4.3.9)
-  - SDWebImage (5.15.5):
-    - SDWebImage/Core (= 5.15.5)
-  - SDWebImage/Core (5.15.5)
-  - ZLPhotoBrowser (4.3.9):
-    - ZLPhotoBrowser/Core (= 4.3.9)
-  - ZLPhotoBrowser/Core (4.3.9)
+    - ZLPhotoBrowser (~> 4.4.1)
+  - Masonry (1.1.0)
+  - SDWebImage (5.15.6):
+    - SDWebImage/Core (= 5.15.6)
+  - SDWebImage/Core (5.15.6)
+  - ZLPhotoBrowser (4.4.1):
+    - ZLPhotoBrowser/Core (= 4.4.1)
+  - ZLPhotoBrowser/Core (4.4.1)
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
@@ -34,6 +36,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - Masonry
     - SDWebImage
     - ZLPhotoBrowser
 
@@ -46,10 +49,11 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  image_pickers: 4406949954a5eb4fac5ada5f13810e6419ef4467
-  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
-  ZLPhotoBrowser: 02b3569b8f702d2e153e8fdb1f6b32fef3a2867c
+  image_pickers: 67e42be5c35f05c418990c87b5137b878cd17681
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
+  ZLPhotoBrowser: dd045d229bf0d966e05a06a97ea428aace0303c7
 
 PODFILE CHECKSUM: ef19549a9bc3046e7bb7d2fab4d021637c0c58a3
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1

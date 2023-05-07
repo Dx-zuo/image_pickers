@@ -8,7 +8,7 @@
 
 #import "AKGalleryViewer.h"
 #import "UIImageView+WebCache.h"
-#import "Masonry.h"
+#import <Masonry/Masonry.h>
 #import <ImageIO/ImageIO.h>
 #import <SDWebImage/UIImage+GIF.h>
 #import "PlayTheVideoVC.h"
