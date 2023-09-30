@@ -43,62 +43,62 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
     return [UIColor colorWithRed:red/255.00 green:green/255.00 blue:blue/255.00 alpha:alph/255.00];
 }
 -(void)colorChange:(NSDictionary*)colorString configuration:(ZLPhotoUIConfiguration*)configuration {
-//    UIColor* colorType =[self stringChangeColor:colorString];
-//    int light =[[colorString objectForKey:@"l"] intValue];
-//    /// 相册列表界面背景色
-//    [ZLPhotoUIConfiguration default].albumListBgColor =[UIColor whiteColor];
-//    [ZLPhotoUIConfiguration default].previewVCBgColor =[UIColor whiteColor];
-//    /// 分割线颜色
-//    [ZLPhotoUIConfiguration default].separatorColor =[UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:0.98];
-//    /// 小图界面背景色
-//    [ZLPhotoUIConfiguration default].thumbnailBgColor =[UIColor whiteColor];
-//    /// 预览快速选择模式下 拍照/相册/取消 的背景颜色
-//    if(light<=179){
-//        /// 导航条颜色
-//        [ZLPhotoUIConfiguration default].navBarColor = colorType;
-//        /// 导航标题颜色
-//        [ZLPhotoUIConfiguration default].navTitleColor = [UIColor whiteColor];
-//        [ZLPhotoUIConfiguration default].navBarColorOfPreviewVC = colorType;
-//        ///  底部工具栏按钮 可交互 状态标题颜色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalTitleColor = [UIColor whiteColor];
-//        /// 底部工具栏按钮 可交互 状态背景颜色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColor =colorType;
-//        /// 底部工具栏按钮 不可交互 状态背景颜色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnDisableBgColor =colorType;
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColorOfPreviewVC =colorType;
-//        /// 自定义相机录制视频时，进度条颜色
-//        [ZLPhotoUIConfiguration default].cameraRecodeProgressColor =colorType;
-//        /// 选中图片右上角index background color
-//        [ZLPhotoUIConfiguration default].indexLabelBgColor =colorType;
-//        /// 底部工具条底色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBgColor = colorType;
-//        //首页上部颜色
-//        [ZLPhotoUIConfiguration default].navEmbedTitleViewBgColor = colorType;
-//    }else{
-//        /// 导航条颜色
-//        [ZLPhotoUIConfiguration default].navBarColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
-//        /// 导航标题颜色
-//        [ZLPhotoUIConfiguration default].navTitleColor = [UIColor blackColor];
-//        [ZLPhotoUIConfiguration default].navBarColorOfPreviewVC = [UIColor blackColor];
-//        /// 底部工具栏按钮 可交互 状态背景颜色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColor =[UIColor blackColor];
-//        /// 底部工具栏按钮 不可交互 状态背景颜色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBtnDisableBgColor =[UIColor blackColor];
-//        /// 自定义相机录制视频时，进度条颜色
-//        [ZLPhotoUIConfiguration default].cameraRecodeProgressColor =[UIColor blackColor];
-//        /// 选中图片右上角index background color
-//        [ZLPhotoUIConfiguration default].indexLabelBgColor =[UIColor blackColor];
-//        /// 底部工具条底色
-//        [ZLPhotoUIConfiguration default].bottomToolViewBgColor = [UIColor whiteColor];
-//        ///首页上部颜色
-//        [ZLPhotoUIConfiguration default].navEmbedTitleViewBgColor = [UIColor whiteColor];
-//    }
-//    /// 相册列表界面 相册title颜色
-//    [ZLPhotoUIConfiguration default].albumListTitleColor = [UIColor blackColor];
-//    [ZLPhotoUIConfiguration default].navViewBlurEffectOfPreview =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    [ZLPhotoUIConfiguration default].navViewBlurEffectOfAlbumList =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    [ZLPhotoUIConfiguration default].bottomViewBlurEffectOfPreview =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-//    [ZLPhotoUIConfiguration default].bottomViewBlurEffectOfAlbumList =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    UIColor* colorType =[self stringChangeColor:colorString];
+    int light =[[colorString objectForKey:@"l"] intValue];
+    /// 相册列表界面背景色
+    [ZLPhotoUIConfiguration default].albumListBgColor =[UIColor whiteColor];
+    [ZLPhotoUIConfiguration default].previewVCBgColor =[UIColor whiteColor];
+    /// 分割线颜色
+    [ZLPhotoUIConfiguration default].separatorColor =[UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:0.98];
+    /// 小图界面背景色
+    [ZLPhotoUIConfiguration default].thumbnailBgColor =[UIColor whiteColor];
+    /// 预览快速选择模式下 拍照/相册/取消 的背景颜色
+    if(light<=179){
+        /// 导航条颜色
+        [ZLPhotoUIConfiguration default].navBarColor = colorType;
+        /// 导航标题颜色
+        [ZLPhotoUIConfiguration default].navTitleColor = [UIColor whiteColor];
+        [ZLPhotoUIConfiguration default].navBarColorOfPreviewVC = colorType;
+        ///  底部工具栏按钮 可交互 状态标题颜色
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalTitleColor = [UIColor whiteColor];
+        /// 底部工具栏按钮 可交互 状态背景颜色
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColor =colorType;
+        /// 底部工具栏按钮 不可交互 状态背景颜色
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnDisableBgColor =colorType;
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColorOfPreviewVC =colorType;
+        /// 自定义相机录制视频时，进度条颜色
+        [ZLPhotoUIConfiguration default].cameraRecodeProgressColor =colorType;
+        /// 选中图片右上角index background color
+        [ZLPhotoUIConfiguration default].indexLabelBgColor =colorType;
+        /// 底部工具条底色
+        [ZLPhotoUIConfiguration default].bottomToolViewBgColor = colorType;
+        //首页上部颜色
+        [ZLPhotoUIConfiguration default].navEmbedTitleViewBgColor = colorType;
+    }else{
+        /// 导航条颜色
+        [ZLPhotoUIConfiguration default].navBarColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
+        /// 导航标题颜色
+        [ZLPhotoUIConfiguration default].navTitleColor = [UIColor blackColor];
+        [ZLPhotoUIConfiguration default].navBarColorOfPreviewVC = [UIColor blackColor];
+        /// 底部工具栏按钮 可交互 状态背景颜色
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnNormalBgColor =[UIColor blackColor];
+        /// 底部工具栏按钮 不可交互 状态背景颜色
+        [ZLPhotoUIConfiguration default].bottomToolViewBtnDisableBgColor =[UIColor blackColor];
+        /// 自定义相机录制视频时，进度条颜色
+        [ZLPhotoUIConfiguration default].cameraRecodeProgressColor =[UIColor blackColor];
+        /// 选中图片右上角index background color
+        [ZLPhotoUIConfiguration default].indexLabelBgColor =[UIColor blackColor];
+        /// 底部工具条底色
+        [ZLPhotoUIConfiguration default].bottomToolViewBgColor = [UIColor whiteColor];
+        ///首页上部颜色
+        [ZLPhotoUIConfiguration default].navEmbedTitleViewBgColor = [UIColor whiteColor];
+    }
+    /// 相册列表界面 相册title颜色
+    [ZLPhotoUIConfiguration default].albumListTitleColor = [UIColor blackColor];
+    [ZLPhotoUIConfiguration default].navViewBlurEffectOfPreview =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    [ZLPhotoUIConfiguration default].navViewBlurEffectOfAlbumList =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    [ZLPhotoUIConfiguration default].bottomViewBlurEffectOfPreview =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+    [ZLPhotoUIConfiguration default].bottomViewBlurEffectOfAlbumList =[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
     
 }
 -(void)changeLanguage:(NSString*)language{
@@ -176,11 +176,10 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
         NSString *cameraMimeType =[dic objectForKey:@"cameraMimeType"];
         ZLPhotoConfiguration *configuration =[ZLPhotoConfiguration default];
         configuration.maxSelectCount = selectCount;//最多选择多少张图
-        configuration.allowTakePhotoInLibrary = showCamera;//是否显示摄像头
+        configuration.allowTakePhotoInLibrary =showCamera;//是否显示摄像头
+        configuration.allowSelectOriginal =NO;//不选择原图
         [ZLPhotoUIConfiguration default].cellCornerRadio =5;
         configuration.allowSelectGif = isShowGif;
-        configuration.allowEditImage = YES;
-        configuration.allowEditVideo = YES;
         //type photo video  若不存在则为带相册的，若存在则直接打开相机或录像
         if([cameraMimeType isEqualToString:@"video"]||[galleryMode isEqualToString:@"video"]){
             NSInteger videoRecordMinSecond =[[dic objectForKey:@"videoRecordMinSecond"] integerValue];
@@ -200,7 +199,9 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 configuration.maxSelectVideoDuration = videoSelectMaxSecond;
             }
         }
-       
+        configuration.allowEditImage = enableCrop;
+        configuration.allowEditVideo = enableCrop;
+
         /*以下是编辑相关*/
         ///如果是可编辑的就需要设置editAfterSelectThumbnailImage 因为editAfterSelectThumbnailImage=true和maxSelectCount=1的时候enableCrop=false ，所以需要editAfterSelectThumbnailImage =false
         configuration.allowEditImage =enableCrop;
@@ -227,8 +228,9 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 [ZLPhotoConfiguration default].cameraConfiguration.allowTakePhoto = NO;
                 configuration.allowSelectVideo =YES;
                 configuration.allowSelectImage =NO;
-        
             }
+            configuration.allowEditImage = enableCrop;
+            configuration.allowEditVideo = enableCrop;
             ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
             [[UIApplication sharedApplication].delegate.window.rootViewController  showDetailViewController:camera sender:nil];
             camera.takeDoneBlock = ^(UIImage *image, NSURL *videoUrl){
@@ -292,6 +294,7 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 [ZLPhotoConfiguration default].cameraConfiguration.allowTakePhoto = YES;
                 configuration.allowSelectImage =YES;
                 configuration.allowSelectVideo =YES;
+                
             }else if ([galleryMode isEqual:@"image"]){
                 configuration.allowMixSelect = false;//不允许混合选择
                 [ZLPhotoConfiguration default].cameraConfiguration.allowTakePhoto = YES;
@@ -306,7 +309,8 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 configuration.allowSelectVideo =YES;
                 configuration.allowSelectImage =NO;
             }
-        
+            configuration.allowEditImage = enableCrop;
+            configuration.allowEditVideo = enableCrop;
             NSMutableArray *arr11 =[[NSMutableArray alloc]init];
             ac.cancelBlock = ^{
                 NSArray *arr =@[];
