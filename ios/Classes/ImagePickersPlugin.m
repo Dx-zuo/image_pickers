@@ -511,6 +511,32 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
         options.version = PHVideoRequestOptionsVersionCurrent;
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
         PHImageManager *manager = [PHImageManager defaultManager];
+        if (@available(iOS 13, *)) {
+            [options setNetworkAccessAllowed:YES];
+            [manager requestExportSessionForVideo:asset options:options exportPreset:AVAssetExportPresetHighestQuality resultHandler:^(AVAssetExportSession * _Nullable exportSession, NSDictionary * _Nullable info) {
+                AVURLAsset *urlAsset = (AVURLAsset *)exportSession.asset;
+                NSURL *url = [urlAsset URL];
+                NSString *subString = [url.absoluteString substringFromIndex:7];
+                NSInteger a=  urlAsset.duration.value/urlAsset.duration.timescale;
+                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                formatter.dateFormat = @"yyyyMMddHHmmss";
+                int  x = arc4random() % 10000;
+                NSString *name = [NSString stringWithFormat:@"%@%d",[formatter stringFromDate:[NSDate date]],x];
+                NSString  *jpgPath = [NSHomeDirectory()     stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@",name]];
+                if (!subString) return;
+                UIImage *img = [self getImage:subString]  ;
+                //保存到沙盒
+                [UIImageJPEGRepresentation(img,1.0) writeToFile:jpgPath atomically:YES];
+                NSString *aPath3=[NSString stringWithFormat:@"%@/Documents/%@",NSHomeDirectory(),name];
+                [arr addObject:@{
+                    @"thumbPath":[NSString stringWithFormat:@"%@",aPath3],
+                    @"path":[NSString stringWithFormat:@"%@",subString],
+                }];
+                [self saveImageView:index imagePHAsset:modelList arr:arr  compressSize:compressSize result:result];
+
+            }];
+            return;
+        }
         [manager requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
 
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
