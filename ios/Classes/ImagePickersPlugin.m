@@ -178,29 +178,34 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
         configuration.maxSelectCount = selectCount;//最多选择多少张图
         configuration.allowTakePhotoInLibrary =showCamera;//是否显示摄像头
         configuration.allowSelectOriginal =NO;//不选择原图
+        configuration.downloadVideoBeforeSelecting =true;//选择之前下载
+        configuration.timeout =600;
         [ZLPhotoUIConfiguration default].cellCornerRadio =5;
         configuration.allowSelectGif = isShowGif;
+          
         //type photo video  若不存在则为带相册的，若存在则直接打开相机或录像
-        if([cameraMimeType isEqualToString:@"video"]||[galleryMode isEqualToString:@"video"]){
-            NSInteger videoRecordMinSecond =[[dic objectForKey:@"videoRecordMinSecond"] integerValue];
-            NSInteger videoRecordMaxSecond =[[dic objectForKey:@"videoRecordMaxSecond"] integerValue];
-            NSInteger videoSelectMaxSecond =[[dic objectForKey:@"videoSelectMaxSecond"] integerValue];
-            NSInteger videoSelectMinSecond =[[dic objectForKey:@"videoSelectMinSecond"] integerValue];
-            if([dic objectForKey:@"videoRecordMinSecond"]){
-                [ZLPhotoConfiguration default].cameraConfiguration.minRecordDuration =videoRecordMinSecond;
-            }
-            if([dic objectForKey:@"videoSelectMinSecond"]){
-                configuration.minSelectVideoDuration = videoSelectMinSecond;
-            }
-            if([dic objectForKey:@"videoRecordMaxSecond"]){
-                [ZLPhotoConfiguration default].cameraConfiguration.maxRecordDuration =videoRecordMaxSecond;
-            }
-            if([dic objectForKey:@"videoSelectMaxSecond"]){
-                configuration.maxSelectVideoDuration = videoSelectMaxSecond;
-            }
-        }
-        configuration.allowEditImage = enableCrop;
-        configuration.allowEditVideo = enableCrop;
+          if([cameraMimeType isEqualToString:@"video"]||[galleryMode isEqualToString:@"video"]||[galleryMode isEqualToString:@"all"]){
+                   if([dic objectForKey:@"videoRecordMinSecond"]){
+                       NSInteger videoRecordMinSecond =[[dic objectForKey:@"videoRecordMinSecond"] integerValue];
+
+                       [ZLPhotoConfiguration default].cameraConfiguration.minRecordDuration =videoRecordMinSecond;
+                   }
+                   if([dic objectForKey:@"videoSelectMinSecond"]){
+                       NSInteger videoSelectMinSecond =[[dic objectForKey:@"videoSelectMinSecond"] integerValue];
+
+                       configuration.minSelectVideoDuration = videoSelectMinSecond;
+                   }
+                   if([dic objectForKey:@"videoRecordMaxSecond"]){
+                       NSInteger videoRecordMaxSecond =[[dic objectForKey:@"videoRecordMaxSecond"] integerValue];
+
+                       [ZLPhotoConfiguration default].cameraConfiguration.maxRecordDuration =videoRecordMaxSecond;
+                   }
+                   if([dic objectForKey:@"videoSelectMaxSecond"]){
+                       NSInteger videoSelectMaxSecond =[[dic objectForKey:@"videoSelectMaxSecond"] integerValue];
+
+                       configuration.maxSelectVideoDuration = videoSelectMaxSecond;
+                   }
+         }
 
         /*以下是编辑相关*/
         ///如果是可编辑的就需要设置editAfterSelectThumbnailImage 因为editAfterSelectThumbnailImage=true和maxSelectCount=1的时候enableCrop=false ，所以需要editAfterSelectThumbnailImage =false
@@ -229,8 +234,7 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 configuration.allowSelectVideo =YES;
                 configuration.allowSelectImage =NO;
             }
-            configuration.allowEditImage = enableCrop;
-            configuration.allowEditVideo = enableCrop;
+            
             ZLCustomCamera *camera = [[ZLCustomCamera alloc] init];
             [[UIApplication sharedApplication].delegate.window.rootViewController  showDetailViewController:camera sender:nil];
             camera.takeDoneBlock = ^(UIImage *image, NSURL *videoUrl){
@@ -249,14 +253,13 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                     formatter.dateFormat = @"yyyyMMddHHmmss";
                     int  x = arc4random() % 10000;
                     NSString *name = [NSString stringWithFormat:@"%@01%d",[formatter stringFromDate:[NSDate date]],x];
-                    NSString  *jpgPath = [NSHomeDirectory()     stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@.%@",name,[self imageType:data2]]];
+                    NSString  *jpgPath = [NSHomeDirectory()  stringByAppendingPathComponent:[NSString stringWithFormat:@"Documents/%@.%@",name,[self imageType:data2]]];
                     //保存到沙盒
                     [UIImageJPEGRepresentation(imageFF,1) writeToFile:jpgPath atomically:YES];
                     NSDictionary *photoDic =@{
                         @"thumbPath":[NSString stringWithFormat:@"%@",jpgPath],
                         @"path":[NSString stringWithFormat:@"%@",jpgPath],
                     };
-
                     //取出路径
                     NSArray *arr =@[photoDic];
                     result(arr);
@@ -309,6 +312,15 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 configuration.allowSelectVideo =YES;
                 configuration.allowSelectImage =NO;
             }
+            
+            ///区分是从icloud上的。暂时发现iCloud的有问题
+//            configuration.canSelectAsset = ^BOOL(PHAsset * asset) {
+//                if(asset.sourceType==PHAssetSourceTypeCloudShared){
+//                    return  false;
+//                }
+//                return true;
+//            };
+        
             configuration.allowEditImage = enableCrop;
             configuration.allowEditVideo = enableCrop;
             NSMutableArray *arr11 =[[NSMutableArray alloc]init];
@@ -503,9 +515,7 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
     PHAsset *asset  =modelList[index].asset;
     index++;
     if(asset.mediaType==PHAssetMediaTypeVideo){
-        PHImageManager *manage =[[PHImageManager alloc]init];
-        PHImageRequestOptions *option =[[PHImageRequestOptions alloc]init];
-        option.networkAccessAllowed =YES;
+
         //视频
         PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
         options.version = PHVideoRequestOptionsVersionCurrent;
@@ -542,7 +552,7 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
             AVURLAsset *urlAsset = (AVURLAsset *)asset;
             NSURL *url = urlAsset.URL;
             NSString *subString = [url.absoluteString substringFromIndex:7];
-            NSInteger a=  urlAsset.duration.value/urlAsset.duration.timescale;
+//            NSInteger a=  urlAsset.duration.value/urlAsset.duration.timescale;
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             formatter.dateFormat = @"yyyyMMddHHmmss";
             int  x = arc4random() % 10000;
@@ -596,8 +606,12 @@ static NSString *const CHANNEL_NAME = @"flutter/image_pickers";
                 [self saveImageView:index imagePHAsset:modelList arr:arr  compressSize:compressSize result:result];
             }else{
                 NSData *gifData = imageData;
-                NSString *str =    [ImagePickersPlugin createFile:gifData suffix:@".gif"];
-                [arr addObject:[NSString stringWithFormat:@"%@",str]];
+                NSString *str = [ImagePickersPlugin createFile:gifData suffix:@".gif"];
+                //取出路径
+                [arr addObject: @{
+                    @"thumbPath":[NSString stringWithFormat:@"%@",str],
+                    @"path":[NSString stringWithFormat:@"%@",str],
+                }];
                 [self saveImageView:index imagePHAsset:modelList arr:arr  compressSize:compressSize result:result];
             }
       

@@ -218,6 +218,7 @@ class _MyAppState extends State<MyApp> {
                       videoSelectMaxSecond: 300,
                       videoSelectMinSecond: 5,
                     );
+
                     setState(() {});
                     print(_listImageVideoPaths);
                   },
@@ -292,4 +293,5 @@ class _MyAppState extends State<MyApp> {
       ),
     );
   }
+
 }
